@@ -12,7 +12,9 @@ const Login = () => {
          padding: 16,
     }}>
 
-      <Text>Login</Text>
+      <Text style={{
+        fontFamily:"RobotoBold"
+      }}>Login</Text>
     </SafeAreaView>
     </>
     

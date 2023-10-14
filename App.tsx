@@ -2,15 +2,108 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import MainScreenStack from './navigations/mainScreenStack';
+import CreateTable from './database/table';
+import { useEffect, useState } from 'react';
+import { User } from './constants/user';
+import IDGenerator from './utils/id_generator';
+import Create from './database/create';
+
+interface ResponseProps {
+  table: string;
+  isOk: boolean;
+}
 
 export default function App() {
   
+  const [response, setResponse] = useState<ResponseProps[]>([]);
+
   const [fontsLoaded] = useFonts({
     'RobotoRegular': require('./assets/fonts/Roboto-Regular.ttf'),
     'PointRegular': require('./assets/fonts/ToThePointRegular-n9y4.ttf'),
     'RobotoBold': require('./assets/fonts/Roboto-Bold.ttf')
   });
 
+  
+  useEffect(() => {
+    setResponse([]);
+
+    CreateTable.user().then((res) => {
+      setResponse((prevResponse) => [
+        ...(prevResponse || []),
+        { table: "user", isOk: res.success },
+      ]);
+    });
+
+    CreateTable.product().then((res) => {
+      setResponse((prevResponse) => [
+        ...(prevResponse || []),
+        { table: "product", isOk: res.success },
+      ]);
+    });
+
+    CreateTable.sales().then((res) => {
+      setResponse((prevResponse) => [
+        ...(prevResponse || []),
+        { table: "sales", isOk: res.success },
+      ]);
+    });
+
+    CreateTable.expenses().then((res) => {
+      setResponse((prevResponse) => [
+        ...(prevResponse || []),
+        { table: "expenses", isOk: res.success },
+      ]);
+    });
+
+    CreateTable.debt().then((res) => {
+      setResponse((prevResponse) => [
+        ...(prevResponse || []),
+        { table: "debt", isOk: res.success },
+      ]);
+    });
+ 
+    CreateTable.debt_product().then((res) => {
+      setResponse((prevResponse) => [
+        ...(prevResponse || []),
+        { table: "debt_product", isOk: res.success },
+      ]);
+    });
+
+    CreateTable.product_category().then((res) => {
+      setResponse((prevResponse) => [
+        ...(prevResponse || []),
+        { table: "product_category", isOk: res.success },
+      ]);
+    });
+
+    CreateTable.logs().then((res) => {
+      setResponse((prevResponse) => [
+        ...(prevResponse || []),
+        { table: "logs", isOk: res.success },
+      ]);
+    });
+
+
+    // const userData:User = {
+    //   id:IDGenerator.uuid(),
+    //   first_name:"vanz",
+    //   last_name:"bano",
+    //   email:"vanz@gmail.com",
+    //   password:"12345",
+    //   store_name:"java vanz",
+    //   address:"valaga mabini Bohol",
+    //   permit_no:"324354354",
+    //   contact_no:"4356565",
+    // }
+
+    // Create.user(userData).then((res) => {
+    //     console.log("user: ", res)
+    // });
+ 
+  },[]);
+
+   CreateTable.table_checker()
+  
   if (!fontsLoaded) {
     return null;
   }

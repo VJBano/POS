@@ -4,7 +4,7 @@ const IDGenerator = {
 
     uuid: () => {
 
-        return uuid.v4()
+        return uuid.v4() as string
     },
 
     id: () => {

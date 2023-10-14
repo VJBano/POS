@@ -4,5 +4,6 @@ export type MainScreenStackParam = {
         id: number;
         firstname: string;
         lastname: string;
+        store:string;
       };
 }
