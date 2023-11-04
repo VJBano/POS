@@ -7,6 +7,12 @@ import { useEffect, useState } from 'react';
 import { User } from './constants/user';
 import IDGenerator from './utils/id_generator';
 import Create from './database/create';
+import { DeviceInfo } from './utils/device_info';
+import UserFirebase from './database/firebase/user';
+import Read from './database/read';
+import Delete from './database/delete';
+import LocalStorage from './utils/local_storage';
+import Dashboard from './screens/dashboard';
 
 interface ResponseProps {
   table: string;
@@ -27,6 +33,9 @@ export default function App() {
   useEffect(() => {
     setResponse([]);
 
+    // CreateTable.dropTable("user").then((res) => {
+    //   console.log("Drop Table: ", res)
+    // });
     CreateTable.user().then((res) => {
       setResponse((prevResponse) => [
         ...(prevResponse || []),
@@ -41,6 +50,7 @@ export default function App() {
       ]);
     });
 
+
     CreateTable.sales().then((res) => {
       setResponse((prevResponse) => [
         ...(prevResponse || []),
@@ -48,6 +58,7 @@ export default function App() {
       ]);
     });
 
+    
     CreateTable.expenses().then((res) => {
       setResponse((prevResponse) => [
         ...(prevResponse || []),
@@ -99,9 +110,41 @@ export default function App() {
     // Create.user(userData).then((res) => {
     //     console.log("user: ", res)
     // });
+
+    // DeviceInfo().then((res) => {
+
+    //   UserFirebase.getUserByDeviceData(res.fingerprint).then((resfirebase) => {
+    //     console.log("data from fb: ",resfirebase)
+    //   })
+    // })
+
+    // Read.userByEmailAndPassword("vanz@gmail.com","12345").then((res) => {
+    //       console.log("User: ", res)
+    // });
+
+    // Delete.allUser().then((res) => {
+    //   console.log("delete: ", res)
+    // })
+
+    //  LocalStorage.clearItem();
+
+
+    Read.user().then((res) => {
+      console.log("Users: ", res)
+    });
+    LocalStorage.getItem("deviceinfo").then((res) => {
+      console.log("storafe: ", res)
+    });
+
+
  
+
   },[]);
 
+
+
+  
+ 
    CreateTable.table_checker()
   
   if (!fontsLoaded) {
@@ -112,15 +155,7 @@ export default function App() {
     <>
     <StatusBar style="auto" />
     <MainScreenStack/>
+    {/* <Dashboard/> */}
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

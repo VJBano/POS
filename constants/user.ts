@@ -8,6 +8,9 @@ interface User {
     address:string;
     permit_no:string;
     contact_no:string;
+    brand?: string;
+    fingerprint?:string;
+    manufacturer?:string;
 }
 
 const initUser:User = {

@@ -1,3 +1,4 @@
+
 import posConnDB from "./config"
 
 const CreateTable = {
@@ -7,10 +8,10 @@ const CreateTable = {
             
             await posConnDB.transaction((tx) => {
                 tx.executeSql(`CREATE TABLE IF NOT EXISTS user (
-                    id VARCHAR(50) PRIMARY KEY,
+                    id VARCHAR(50) ,
                     first_name VARCHAR(30),
                     last_name VARCHAR(30),
-                    email VARCHAR(20),
+                    email VARCHAR(20) PRIMARY KEY,
                     password VARCHAR(50),
                     store_name VARCHAR(50),
                     address VARCHAR(50),
@@ -181,6 +182,27 @@ const CreateTable = {
             console.log("Error: ", error);
             throw error;
           }
+    },
+
+    dropTable:async (table:string) => {
+        
+        try {
+            
+            return new Promise((resolve,reject) => {
+                posConnDB.transaction((tx) => {
+                    tx.executeSql(`DROP TABLE IF EXISTS ${table};`, [], (_, result) => {
+                      resolve(true)
+                    }, (error) => {
+                        reject(false)
+                      console.log('Error deleting table:', error);
+                      return false
+                    });
+                  });
+            });
+        } catch (error) {
+            console.log("Error from Table-dropTable: ", error);
+            return
+        }
     }
     // check_table:async (tables:string) => {
         
