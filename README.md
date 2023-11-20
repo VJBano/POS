@@ -1,4 +1,4 @@
-#POS React-Native-Typescript Expo
+# POS React-Native-Typescript Expo
 
 **Just a Hobby Project**
 
