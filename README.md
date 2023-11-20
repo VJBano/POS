@@ -10,4 +10,4 @@
 - Firebase Firestore
 - SQLite
 
-* Open for Collaboration of this project
+**Open for Collaboration of this project**
