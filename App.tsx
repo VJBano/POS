@@ -40,9 +40,6 @@ export default function App() {
   useEffect(() => {
     setResponse([]);
 
-    // CreateTable.dropTable("user").then((res) => {
-    //   console.log("Drop Table: ", res)
-    // });
     CreateTable.user().then((res) => {
       setResponse((prevResponse) => [
         ...(prevResponse || []),
@@ -108,41 +105,6 @@ export default function App() {
       ]);
       setIsOk(res.success);
     });
-
-
-    // const userData:User = {
-    //   id:IDGenerator.uuid(),
-    //   first_name:"vanz",
-    //   last_name:"bano",
-    //   email:"vanz@gmail.com",
-    //   password:"12345",
-    //   store_name:"java vanz",
-    //   address:"valaga mabini Bohol",
-    //   permit_no:"324354354",
-    //   contact_no:"4356565",
-    // }
-
-    // Create.user(userData).then((res) => {
-    //     console.log("user: ", res)
-    // });
-
-    // DeviceInfo().then((res) => {
-
-    //   UserFirebase.getUserByDeviceData(res.fingerprint).then((resfirebase) => {
-    //     console.log("data from fb: ",resfirebase)
-    //   })
-    // })
-
-    // Read.userByEmailAndPassword("vanz@gmail.com","12345").then((res) => {
-    //       console.log("User: ", res)
-    // });
-
-    // Delete.allUser().then((res) => {
-    //   console.log("delete: ", res)
-    // })
-
-    //  LocalStorage.clearItem();
-
 
     // Read.getProductStocks().then((res) => {
     //   console.log("stocks: ", res)
