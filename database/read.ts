@@ -1,4 +1,6 @@
 
+import { Product } from "../constants/product";
+import { ProductCategory } from "../constants/product_category";
 import { User } from "../constants/user"
 import posConnDB from "./config";
 
@@ -68,6 +70,61 @@ const Read = {
         } catch (error) {
             console.log("Error From Read-user: ", error);
             return
+        }
+    },
+
+    productCategory :async () => {
+        
+        try {
+            
+            return new Promise<ProductCategory[]>((resolve, reject) => {
+                posConnDB.transaction((tx) => {
+                    tx.executeSql(`SELECT * FROM product_category`,[],(_, {rows}) => {
+                        const category:ProductCategory[] = rows._array.map((row: ProductCategory) => ({
+                            id: row.id,
+                            category_name:row.category_name
+                        }));
+                        resolve(category);
+
+                    },(error) => {
+                        reject(error);
+                        return false
+                    });
+                });
+            });
+
+        } catch (error) {
+            console.log("Error From Read-productCategory: ", error);
+            return;
+        }
+    },
+
+    getProductStocks:async () => {
+        
+        try {
+            
+            
+            return new Promise<{ product_name: string; stock: number; }[]>((resolve, reject) => {
+
+                posConnDB.transaction((tx) => {
+
+                    tx.executeSql(`SELECT product_name, stock FROM product`,[],(_,{ rows }) => {
+                        const product:{ product_name: string; stock: number; }[] = rows._array.map((row:Product) =>({
+                            product_name: row.product_name,
+                            stock: row.stock
+                        }));
+
+                        resolve(product);
+                    },(error) => {
+                        reject(error);
+                        return false
+                    });
+                });
+            });
+
+        } catch (error) {
+            console.log("Error From Read-getProductStocks: ", error);
+            return;
         }
     }
 } 

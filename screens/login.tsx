@@ -205,24 +205,6 @@ const Login = ({navigation, route}:StackScreenProps<MainScreenStackParam, 'Login
           
         </View>
       </View>
-      {/* <View style={{
-            width:"100%",
-            height:20,
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-          }}>{client?.length == 0 || client == undefined ? 
-          <Text onPress={() => developerCLI()} style={{
-            fontFamily:"RobotoRegular"
-          }}>Aqua©{new Date().getFullYear().toString()}</Text> :
-  
-          <Text onPress={() => developerCLI()} style={{
-            fontFamily:"RobotoRegular"
-          }}>
-            {client?.[0].company_name+"©"+ new Date().getFullYear().toString()}</Text>
-           }
-            
-          </View> */}
     </SafeAreaView>
     } 
 

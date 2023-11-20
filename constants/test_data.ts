@@ -64,3 +64,42 @@ export const sampleStocks = [
         sold:4
     },
 ]
+
+export const sampleProducts = [
+    {
+        id:"xzcxzcxzcc",
+        product_code:4366546665,
+        product_name:"zxzczxcx",
+        price:56,
+        category:54646,
+        stock:4564,
+        sold:454,
+        created_by:"xzcxzcc",
+        created_at:"zxczc",
+        updated_at:"xcxzcxc",
+    },
+    {
+        id:"xzcxzcxzcc",
+        product_code:6546665,
+        product_name:"zxzczxcx",
+        price:566,
+        category:5454646646,
+        stock:455464,
+        sold:4554,
+        created_by:"xzcxzcc",
+        created_at:"zxczc",
+        updated_at:"xcxzcxc",
+    },
+    {
+        id:"xzcxzcxzcc",
+        product_code:43699812346665,
+        product_name:"zxzczxcx",
+        price:561,
+        category:5422646,
+        stock:45624,
+        sold:2454,
+        created_by:"xzcxzcc",
+        created_at:"zxczc",
+        updated_at:"xcxzcxc",
+    }
+]

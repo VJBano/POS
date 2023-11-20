@@ -86,8 +86,23 @@ const Create = {
     product_category:async (productCategory:ProductCategory) => {
         try {
             
+            await posConnDB.transaction((tx) => {
+                tx.executeSql(`INSERT INTO product_category (id, category_name) VALUES (?,?)`,
+                    [
+                        productCategory.id,
+                        productCategory.category_name,
+                        ], () => {
+                            return 1
+                        },() => {
+                            return false
+                        });
+            });
+
+            return 1
+
         } catch (error) {
-            
+            console.error("Error adding Category:", error);
+            return { success: false, message: "Error adding Category", error }
         }
     },
     logs:async (logs:Logs) => {
