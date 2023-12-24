@@ -55,9 +55,9 @@ const CreateTable = {
                 tx.executeSql(`CREATE TABLE IF NOT EXISTS sales (
                     id VARCHAR(50) PRIMARY KEY,
                     product_code BIGINT,
-                    price BIGINT,
+                    price REAL,
                     sold BIGINT,
-                    total BIGINT,
+                    total REAL,
                     created_by VARCHAR(30),
                     created_at VARCHAR(30))`)
             });
