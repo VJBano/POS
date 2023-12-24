@@ -29,6 +29,7 @@ const Login = ({navigation, route}:StackScreenProps<MainScreenStackParam, 'Login
   const [message, setMessage] = useState('');
   const [complete, setComplete] = useState(false);
   const [counter, setCounter] = useState(0);
+  const [storeName, setStoreName] = useState("Store Name Here");
 
   const noNetwork = () => {
     ToastAndroid.show('Please Connect to Internet', ToastAndroid.SHORT);
@@ -40,6 +41,18 @@ const Login = ({navigation, route}:StackScreenProps<MainScreenStackParam, 'Login
 
   useEffect(() => {
 
+    Read.user().then((res) => {
+    
+      if(res?.length !== 0) {
+        setStoreName(res?.[0].store_name as string);
+      }
+
+    });
+
+  },[]);
+
+  useEffect(() => {
+
     if(route.name == 'Login'){
       setIsLoading(true);
       setComplete(false);
@@ -47,8 +60,6 @@ const Login = ({navigation, route}:StackScreenProps<MainScreenStackParam, 'Login
       setPassword("");
       setCounter(0);
       
-      
-
     }
 
     //? check if the device has detail access to firebase
@@ -60,9 +71,9 @@ const Login = ({navigation, route}:StackScreenProps<MainScreenStackParam, 'Login
           DeviceInfo().then((deviceinfo) => {
 
             if(deviceinfo.fingerprint == deviceData.fingerprint) {
-              console.log("naay legit ni: ");
+             
               setComplete(true);
-              
+               
             } else {
               Delete.allUser().then((res) => {
                 console.log("delete: ", res)
@@ -102,7 +113,6 @@ const Login = ({navigation, route}:StackScreenProps<MainScreenStackParam, 'Login
                         permit_no:resfirebase.permit_no,
                         contact_no:resfirebase.contact_no,
                       }
-
 
                       Create.user(toUserDB).then((res) => {
                             console.log("user: ", res)
@@ -165,7 +175,7 @@ const Login = ({navigation, route}:StackScreenProps<MainScreenStackParam, 'Login
         <View style={LoginStyle.wFull}>
           <View style={LoginStyle.row}>
           {/* <SvgXml xml={store} width="20%"/> */}
-            <Text style={LoginStyle.brandName}>Store Name Here</Text>
+            <Text style={LoginStyle.brandName}>{storeName}</Text>
           </View>
   
           <Text style={LoginStyle.loginContinueTxt}>Login to continue</Text>
