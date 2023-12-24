@@ -8,13 +8,14 @@ import { sampleStocks, sampleTopSold } from '../constants/test_data';
 import Sold from '../component/sold';
 import Stock from '../component/stock';
 import StateManager from '../utils/state_manager';
-//{navigation, route}:StackScreenProps<MainScreenStackParam, 'Dashboard'>
+import Best_Seller from '../component/best_seller';
+import Sold_Modal from '../component/modals/sold_modal';
 
 const Dashboard = ({navigation, route}:StackScreenProps<BottomScreenStackParam, 'Dashboard'>) => {
 
    const { firstname, lastname } = route.params;
 
-   const { visible, setVisible } = StateManager.SoldModal()
+   const { visible } = StateManager.SoldModal();
   const amount = Currency(20000, "Php")
 
   return (
@@ -42,12 +43,7 @@ const Dashboard = ({navigation, route}:StackScreenProps<BottomScreenStackParam, 
     }}>
       <Sold/>
       <Modal visible={visible}>
-        <View style={{ flex: 1,}}>
-          <Text>Hello!</Text>
-
-          <Button title="Hide modal" onPress={() => setVisible(false)} />
-        </View>
-        
+        <Sold_Modal/>
       </Modal>
 
 
@@ -55,8 +51,7 @@ const Dashboard = ({navigation, route}:StackScreenProps<BottomScreenStackParam, 
       <Stock/>
 
       {/* Sales */}
-
-
+      
     </ScrollView>
   
 
