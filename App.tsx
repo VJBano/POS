@@ -36,12 +36,6 @@ export default function App() {
     return await LocalStorage.getItem("category");
   }
 
-//  Read.productCategory().then((res) => {
-
-//   console.log("cat: ", res)
-//  });
-
-
   
   useEffect(() => {
     setResponse([]);
@@ -175,9 +169,7 @@ export default function App() {
 
   
  
-    // CreateTable.table_checker();
-
-    // CreateTable.dropTable("sales");
+  //  CreateTable.table_checker()
   
   if (!fontsLoaded) {
     return null;

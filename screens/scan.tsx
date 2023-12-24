@@ -1,20 +1,12 @@
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
+import { View, Text } from 'react-native'
 import React from 'react'
 
 const Scan = () => {
   return (
-    <SafeAreaView style={style.main}>
+    <View>
       <Text>Scan</Text>
-    </SafeAreaView>
+    </View>
   )
 }
-
-const style = StyleSheet.create({
-  main: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop:30
-  },
-})
 
 export default Scan

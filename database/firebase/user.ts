@@ -33,8 +33,7 @@ const UserFirebase = {
             return initUser
         }
 
-    },
-
+    }
 }
 
 export default UserFirebase

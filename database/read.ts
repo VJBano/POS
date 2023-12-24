@@ -126,16 +126,6 @@ const Read = {
             console.log("Error From Read-getProductStocks: ", error);
             return;
         }
-    },
-
-    getProductSaleToday:async () => {
-        
-        try {
-            
-            
-        } catch (error) {
-            
-        }
     }
 } 
 
